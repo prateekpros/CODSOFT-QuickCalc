@@ -123,7 +123,7 @@ fun removeLastCharacter(input: String): String {
 @Composable
 @Preview(showBackground = true)
 fun Calculate(){
-    var snackbarVisible by remember { mutableStateOf(false) }
+
 
     var exp by remember { mutableStateOf("") }
     val fontsize = 25.sp
@@ -180,7 +180,7 @@ fun Calculate(){
             }
 
         }
-        ///////////////
+        /////
         Row(
             Modifier
                 .fillMaxWidth()
@@ -293,22 +293,33 @@ fun Calculate(){
                    )
                    .size(80.dp, 50.dp), tint = Color.White )
 
-
-            Button(onClick = { val result = evaluateMathExpression(exp)
-                if (result != null) {
-                    exp = result.toString()
-                } else {
-                    exp =""
-                }  }, shape = RectangleShape,
+            Button(onClick = {  exp += '-' }, shape = RectangleShape,
                 modifier = Modifier
                     .size(80.dp, 50.dp)
                     .clip(
                         RoundedCornerShape(15.dp)
                     ),colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
-                Text(text = "=", fontSize = fontsize)
+                Text(text = "_", fontSize = 25.sp)
             }
 
 
+
+
+        }
+
+        Button(onClick = { val result = evaluateMathExpression(exp)
+            if (result != null) {
+                exp = result.toString()
+            } else {
+                exp =""
+            }  }, shape = RectangleShape,
+            modifier = Modifier
+                .size(180.dp, 90.dp).padding(10.dp)
+                .clip(
+                    RoundedCornerShape(15.dp)
+                ),colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+        ) {
+            Text(text = "=", fontSize = 50.sp)
         }
 
     }
